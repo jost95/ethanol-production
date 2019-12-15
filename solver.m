@@ -34,7 +34,7 @@ mu_by_glucose = x(1)/(ks + x(1));
 mu_by_oxygen = x(2)/(ks + x(2));
 
 % Prohibitors
-mu_by_ethanol = 1-x(4)/ethanol_max^beta;
+mu_by_ethanol = 1-(x(4)/ethanol_max)^beta;
 
 % Combined kinetic model
 total_mu = u_max*mu_by_glucose*mu_by_oxygen*mu_by_ethanol;
