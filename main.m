@@ -1,66 +1,35 @@
-%% Variable declaration
+%% Ethanol Fermentation Model
 
 % ------- USER DEFINED PAREMTERS --------
-glucose_in = 0;
-oxygen_in = 0;
-total_in = glucose_in + oxygen_in; 
-volume = 100;
-initial_glucose = 0; % 100 grams per liter
-initial_biomass = 0; % 
+total_in = 1; % liter per hour
+glucose_in = 0.1; % gram per (liter and hour)
+oxygen_in = 3*10^-3; % gram per (liter and hour)
+volume = 100; % liter 
+initial_glucose = 0.5; % gram per liter
+initial_oxygen = 0; % gram per liter
+initial_biomass = 1; % gram per liter
 % ---------------------------------------
 
-% -------- UNCONTROLLABLE PARAMETERS -------
-% Product states
-initial_ethonal = 0;
+initial_ethanol = 0;
 initial_co2 = 0;
 
-% State vector
-x = [initia_glucose; initial_oxygen; initial_biomass; initial_ethanol; initial_co2];
+% Solve differential equations
+tspan = [0,100];
+initials = [initial_glucose; initial_oxygen; initial_biomass; initial_ethanol; initial_co2];
+[tspan,y] = ode23(@(t,y) solver(t,y,total_in,glucose_in,oxygen_in,volume), tspan, initials);
 
-D = total_in/volume; % dilusion rate
+figure(1)
+plot(tspan,y(:,1),tspan,y(:,3),tspan,y(:,4))
+title('Concentrations from Ethanol Fermentation');
+xlabel('Hours');
+ylabel('Solution');
+legend('Glucose','Biomass','Ethanol')
 
-% Gas loss parameters
-% Harry's constant
-kh_oxygen = 1;
-kh_co2 = 1;
-
-% Exchange rate
-kla_oxygen = 1;
-kla_co2 = 1;
-
-% Dissolved concentrations
-conc_o2 = 1;
-conc_co2 = 1;
-
-% Partial pressures
-pressure_oxygen = 1;
-pressure_co2 = 1;
-
-% Stoichiometric coefficients
-k1 = 2;
-k2 = 2;
-k3 = 1; % normalize around bio mass generation
-k4 = 2;
-k5 = 2;
-k = [-k1, -k2, k3, k4, k5];
-
-% Kenetic model
-% foundamental constraints allready in kinetic model
-
-u_max = 0.6; % maximum biomass rate (per hour)
-ks = u_max/2;
-
-% Activators
-mu_by_glucose = glucose/(ks + glucose);
-mu_by_oxygen = oxygen/(ks + oxygen);
-
-% Prohibotr
-mu_by_ethanol = 1;
-
-% Combiend kinetic model
-total_mu = u_max * mu_by_glucose * mu_by_oxygen * mu_by_ethanol;
-
-% Calculate rho
-rho = total_mu * biomass;
-
+figure(2)
+t_max = 20;
+plot(tspan(1:t_max),y(1:t_max,2),tspan(1:t_max),y(1:t_max,5))
+title('Concentrations from Ethanol Fermentation');
+xlabel('Hours');
+ylabel('Solution');
+legend('Oxygen','Carbondioxide')
 
