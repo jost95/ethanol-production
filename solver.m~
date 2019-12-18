@@ -9,7 +9,7 @@ k3 = 2;
 k4 = 2;
 
 % Dilution rate
-D = total_in/volume; % per hour
+D = total_in[t]/volume; % per hour
 
 % Gas exchange rate (empircally derived)
 kla_co2 = (0.0051 + 0.0014)/2 * 3600; % per hour
