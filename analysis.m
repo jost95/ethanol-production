@@ -9,12 +9,12 @@ x_v = [x1 x2 x3];
 % Set parameters
 x1_in = 1;
 D = 10/100;
-mu_max = 0.662;
+mu_max = 1.6718;
 Ks = mu_max/2;
 x3_max = 95.40;
-k1 = 1;
+k1 = -3.5;
 k2 = 1;
-k3 = 2;
+k3 = 0.5;
 
 % Construct model expressions
 mu_by_glucose = x1/(Ks + x1);
