@@ -1,6 +1,7 @@
 %% Ethanol Fermentation Solver
 
 function dxdt = solver(~,x,total_in,glucose_in,volume)
+
 % Dilution rate
 D = total_in/volume; % per hour
 
