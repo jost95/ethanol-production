@@ -1,6 +1,6 @@
 %% Ethanol Fermentation Model
 
-% ------- USER DEFINED PAREMTERS --------
+% ------- USER DEFINED PARAMETERS --------
 total_in = 10; % liter per hour
 glucose_in = 1; % gram per (liter and hour)
 volume = 100; % liter 
