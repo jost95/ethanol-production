@@ -14,7 +14,7 @@ initial_co2 = 0;
 k1 = -3.5;
 k2 = 1;
 k3 = 0.5;
-k4 = 2;
+k4 = 1;
 rates = [k1 k2 k3 k4];
 
 % Split variables being optimized

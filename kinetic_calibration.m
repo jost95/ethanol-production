@@ -13,4 +13,4 @@ obj_func = @objective;
 
 % Use non gradient optimization algorithm
 options = optimoptions('patternsearch','display','iter');
-par_opt = patternsearch(obj_func,params,[],[],[],[],lb,[],[],options)
+par_opt = patternsearch(obj_func,params,[],[],[],[],lb,[],[],options);

@@ -7,11 +7,11 @@ syms x1 x2 x3
 x_v = [x1 x2 x3];
 
 % Set parameters
-x1_in = 1;
-D = 10/100;
-mu_max = 1.6718;
-Ks = mu_max/2;
-x3_max = 95.40;
+x1_in = 5;
+D = 5/100;
+mu_max = 1.6893;
+Ks = 0.3476;
+x3_max = 38.7585;
 k1 = -3.5;
 k2 = 1;
 k3 = 0.5;
@@ -36,19 +36,19 @@ x2_opt = double(x2_opt);
 x3_opt = double(x3_opt);
 
 % Construct solution vectors
-x_sol_1 = [x1_opt(1), x2_opt(1), x2_opt(1)]
-x_sol_2 = [x1_opt(2), x2_opt(2), x2_opt(2)]
-x_sol_3 = [x1_opt(3), x2_opt(3), x2_opt(3)]
+x_sol_1 = [x1_opt(1), x2_opt(1), x3_opt(1)];
+x_sol_2 = [x1_opt(2), x2_opt(2), x3_opt(2)];
+x_sol_3 = [x1_opt(3), x2_opt(3), x3_opt(3)];
 
 % Compute Jacobian
 J = jacobian(exps, x_v);
 
 % Evaluate Jacobian at steady state, extract solutions from each component
-J1 = double(subs(J, x_v, x_sol_1))
-J2 = double(subs(J, x_v, x_sol_2))
-J3 = double(subs(J, x_v, x_sol_3))
+J1 = double(subs(J, x_v, x_sol_1));
+J2 = double(subs(J, x_v, x_sol_2));
+J3 = double(subs(J, x_v, x_sol_3));
 
 % Compute eigen values
-lamda1 = eig(J1)
-lamda2 = eig(J2)
-lamda3 = eig(J3)
+lamda1 = eig(J1);
+lamda2 = eig(J2);
+lamda3 = eig(J3);
